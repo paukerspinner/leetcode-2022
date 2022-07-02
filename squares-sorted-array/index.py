@@ -8,13 +8,13 @@ class Solution:
         right = len(nums) - 1
         while left < right:
             if abs(nums[left]) > abs(nums[right]):
-                result = [nums[left] ** 2] + result
+                result += [nums[left] ** 2]
                 left += 1
             else:
-                result = [nums[right] ** 2] + result
+                result += [nums[right] ** 2]
                 right -= 1
 
-        return [nums[left] ** 2] + result
+        return [nums[left] ** 2] + result[::-1]
 
 def sortedSquares(nums):
     solution = Solution()
