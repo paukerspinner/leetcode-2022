@@ -12,12 +12,10 @@ class Solution:
             return left if nums[left] == target else -1
         
         mid = (left + right) >> 1
-        if nums[mid] == target:
-            return mid
         if nums[mid] < target:
             return self.binarySearch(nums, mid + 1, right, target)
-        if nums[mid] > target:
-            return self.binarySearch(nums, left, right - 1, target)
+        else:
+            return self.binarySearch(nums, left, mid, target)
 
 def search(nums: List[int], target: int) -> int:
     solution = Solution()
