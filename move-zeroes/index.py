@@ -9,12 +9,10 @@ class Solution:
         index = 0
         next = 0
         while next < len(nums):
-            if nums[next] == 0:
-                next += 1
-            else:
+            if nums[next] != 0:
                 nums[index], nums[next] = nums[next], nums[index]
                 index += 1
-                next += 1
+            next += 1
         
         return nums
 
