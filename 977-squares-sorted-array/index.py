@@ -27,3 +27,4 @@ assert sortedSquares([-4]) == [16], 'One element'
 assert sortedSquares([-2, -1]) == [1, 4], 'Two elements'
 assert sortedSquares([1,2,3,4,5]) == [1,4,9,16,25], 'Only positive numbers'
 assert sortedSquares([-5,-4,-3,-2,-1]), 'Only negative numbers'
+print('Completed')
