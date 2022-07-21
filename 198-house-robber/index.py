@@ -2,13 +2,12 @@ from typing import List
 
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        maxRobList = []
-        for idx, elem in enumerate(nums):
-            if idx < 2:
-                maxRobList.append(elem)
-            else:
-                maxRobList.append(max(maxRobList[-3:-1]) + elem)
-        return max(maxRobList)
+        prev1st = prev2nd = prev3rd = 0
+        for elem in nums:
+            maxRob = max(prev3rd, prev2nd) + elem
+            prev3rd, prev2nd, prev1st = prev2nd, prev1st, maxRob 
+
+        return max(prev2nd, prev1st)
 
 
 def rob(nums: List[int]) -> int:
