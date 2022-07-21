@@ -2,24 +2,20 @@ from typing import List
 
 class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
-        minTotals = [[] for row in triangle]
-
-        for i, row in enumerate(triangle):
+        prevRowMinTotals = [0]
+        for row in triangle:
+            rowMinTotals = []
             for j, elem in enumerate(row):
-                print(i,j)
-                if i == j == 0:
-                    minTotals[i].append(elem)
-                elif j == 0:
-                    minTotals[i].append(minTotals[i-1][j] + elem)
+                if j == 0:
+                    prevMinTotal = prevRowMinTotals[j]
                 elif j == len(row) - 1:
-                    minTotals[i].append(minTotals[i-1][j-1] + elem)
+                    prevMinTotal = prevRowMinTotals[j-1]
                 else:
-                    minTotals[i].append(min(minTotals[i-1][j-1], minTotals[i-1][j]) + elem)
+                    prevMinTotal = min(prevRowMinTotals[j-1], prevRowMinTotals[j])
+                rowMinTotals.append(prevMinTotal + elem)
+            prevRowMinTotals = rowMinTotals
         
-        for row in minTotals:
-            print(row)
-        
-        return min(minTotals[-1])
+        return min(rowMinTotals)
 
 
 def minimumTotal(triangle: List[List[int]]) -> int:
