@@ -4,21 +4,23 @@ from typing import List
 class Solution:
     def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
         count = 0
-        prevProds = []
-        for num in nums:
-            if num >= k:
-                continue
-            curProds = [num]
-            count += 1
-            for prevProd in prevProds:
-                prod = prevProd * num
-                if prod < k:
-                    curProds.append(prod)
-                    count += 1
-                else:
-                    break
-            prevProds = curProds
-        
+        left = right = 0
+        prod = 1
+        while right < len(nums):
+            if prod >= k:
+                prod = prod / nums[left-1]
+            else:
+                prod = prod * nums[right]
+            
+            if prod >= k:
+                left += 1
+                if right < left:
+                    right = left
+                    prod = 1
+            else:
+                count += right - left + 1
+                right += 1
+
         return count
 
 def numSubarrayProductLessThanK(nums: List[int], k: int) -> int:
