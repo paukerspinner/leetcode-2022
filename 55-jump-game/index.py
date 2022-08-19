@@ -4,22 +4,13 @@ from typing import List
 
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        length = len(nums)
-        canJumpFromList = [None] * length
+        nearestCanJump = len(nums) - 1
 
-        def canJumpFrom(pos: int):
-            print(pos)
-            if length - pos - 1 <= nums[pos]:
-                return True
-            else:
-                for step in range(nums[pos], 0, -1):
-                    if canJumpFromList[pos + step] == None:
-                        canJumpFromList[pos + step] = canJumpFrom(pos + step) 
-                    if canJumpFromList[pos + step] == True:
-                        return True
-                return False
+        for idx in range(len(nums) - 1, -1, -1):
+            if nearestCanJump - idx <= nums[idx]:
+                nearestCanJump = idx
         
-        return canJumpFrom(0)
+        return nearestCanJump == 0
 
 def canJump(nums: List[int]) -> bool:
     print('***************************')
